@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in post_list %}
+    {% for post in posts %}
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
@@ -11,17 +11,32 @@
                 </div>   
         </article>
     {% endfor %}
-        {% if post_list.has_other_pages %}
-                <ul class="pagination justify-content-center pagination-sm">
-                    {% if post_list.has_previous %}
-                        <li><a href="?page={{ post_list.previous_page_number }}" class="page-link">&laquo; Previous </a></li>
-                    {% endif %}                    
-                    {% if post_list.has_next %}
-                        <li><a href="?page={{ post_list.next_page_number }}" class="page-link"> Next &raquo;</a></li>
-                    {% endif %}
-                </ul>
-                <span class="current float-right mb-5">Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}</span>
+        <ul class="pagination">
+  {% if posts.has_previous %}
+    <li class="page-item">
+      <a href="?page={{ posts.previous_page_number }}" class="page-link">&laquo;</a>
+    </li>
+  {% endif %}
+
+  {% for p in page_range %}
+    {% if posts.number == p %}
+      <li class="page-item active">
+        <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+      </li>
+    {% else %}
+      <li class="page-item">
+        <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+      </li>
     {% endif %}
+  {% endfor %}
+
+  {% if posts.has_next %}
+    <li class="page-item">
+      <a href="?page={{ posts.next_page_number }}" class="page-link">&raquo;</a>
+    </li>
+  {% endif %}
+</ul>
+
 {% endblock content %}
 
 

@@ -6,18 +6,37 @@ from . forms import CommentForm
 # Create your views here.
 def home(request):
 	post = Post.objects.all().order_by('-publish')
-	page = request.GET.get('page', 4)
-	paginator = Paginator(post, 4)
+	paginator = Paginator(post, 5)
+	page = request.GET.get('page')
 	try:
-		post_list = paginator.page(page)
+		posts = paginator.page(page)
 	except PageNotAnInteger:
-		post_list = paginator.page(1)
+		posts = paginator.page(1)
 	except EmptyPage:
-		post_list = paginator.page(paginator.num_pages)
+		posts = paginator.page(paginator.num_pages)
+
+	if page is None:
+		start_index = 0
+		end_index = 7
+	else:
+		(start_index, end_index) = proper_pagination(posts, index=4)
+
+	page_range = list(paginator.page_range)[start_index:end_index]
 	context = {
-		'post_list':post_list
+		'posts': posts,
+		'page_range': page_range,
 	}
 	return render(request, 'blog/home.html', context)
+
+
+def proper_pagination(posts, index):
+    start_index = 0
+    end_index = 7
+    if posts.number > index:
+        start_index = posts.number - index
+        end_index = start_index + end_index
+    return (start_index, end_index)
+
 
 def post_details(request, pk):
 	posts = get_object_or_404(Post, pk=pk)
