@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in post_list %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a href="#"><h4 class="article-title">{{ post.title }}</h4></a>
+                    <small class="text-muted">author: {{ post.author | linebreaksbr }} | on: {{ post.publish|date:"M d, Y" }}</small>                                    
+                     <p>{{ post.content | slice:"300" }}.......</p> <a class="btn btn-outline-primary btn-sm" href="{% url 'blog-details' post.pk %}">Continue Reading.....</a>
+                </div>   
+        </article>
+    {% endfor %}
+        {% if post_list.has_other_pages %}
+                <ul class="pagination justify-content-center pagination-sm">
+                    {% if post_list.has_previous %}
+                        <li><a href="?page={{ post_list.previous_page_number }}" class="page-link">&laquo; Previous </a></li>
+                    {% endif %}                    
+                    {% if post_list.has_next %}
+                        <li><a href="?page={{ post_list.next_page_number }}" class="page-link"> Next &raquo;</a></li>
+                    {% endif %}
+                </ul>
+                <span class="current float-right mb-5">Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}</span>
+    {% endif %}
+{% endblock content %}
+
+
+        
