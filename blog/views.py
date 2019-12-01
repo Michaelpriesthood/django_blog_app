@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post
+from django.http import HttpResponseRedirect
+from .models import Post, Files_Upload
 from . forms import CommentForm
 
 # Create your views here.
 def home(request):
 	post = Post.objects.all().order_by('-publish')
-	paginator = Paginator(post, 5)
+	paginator = Paginator(post, 5) # Show 5 post for each page.
 	page = request.GET.get('page')
 	try:
 		posts = paginator.page(page)
@@ -38,9 +39,12 @@ def proper_pagination(posts, index):
     return (start_index, end_index)
 
 
-def post_details(request, pk):
-	posts = get_object_or_404(Post, pk=pk)
+
+
+def post_details(request, post_id):
+	posts = get_object_or_404(Post, id=post_id)
 	comments = posts.comments.filter()
+	files_upload = Files_Upload.objects.filter()
     # Comment posted
 	if request.method == 'POST':
 		comment_form = CommentForm(request.POST)
@@ -53,11 +57,12 @@ def post_details(request, pk):
 	context = {
 		'posts': posts,
 		'comments' :comments,
-		'comment_form': comment_form,	
-		
+		'comment_form': comment_form,
+		'files_upload': files_upload,
 	}
 
 	return render(request, 'blog/post_details.html', context)
+
 
 
 

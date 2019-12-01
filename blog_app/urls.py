@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from django.views.generic import TemplateView
+from django.conf import settings
+
 
 urlpatterns = [
-    # path('login', TemplateView.as_view(template_name='blog/login.html')),
-    path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    # path('oauth/', include('social_django.urls')),
-    
+    path('users/', include('users.urls')),
+    path('admin/', admin.site.urls),
+      
 
 ]
+
+if settings.DEBUG:
+    # test mode
+    from django.conf.urls.static import static    
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

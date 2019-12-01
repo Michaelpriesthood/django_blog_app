@@ -5,10 +5,15 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a href="#"><h4 class="article-title">{{ post.title }}</h4></a>
+                    <a href="{% url 'blog-details' post.id %}"><h4 class="article-title">{{ post.title }}</h4></a>
                     <small class="text-muted">author: {{ post.author | linebreaksbr }} | on: {{ post.publish|date:"M d, Y" }}</small>                                    
-                     <p>{{ post.content | slice:"300" }}.......</p> <a class="btn btn-outline-primary btn-sm" href="{% url 'blog-details' post.pk %}">Continue Reading.....</a>
-                </div>   
+                     <p>{{ post.content | slice:"300" }}.......</p> <a class="btn btn-outline-primary btn-sm" href="{% url 'blog-details' post.id %}">Continue Reading.....</a>
+                </div>
+                {% if post.image %}
+                <div class="thumbnail">
+                    <img src= "{{ post.image.url }}" class="img-fluid"> 
+                </div>                                          
+               {% endif %}   
         </article>
     {% endfor %}
         <ul class="pagination">

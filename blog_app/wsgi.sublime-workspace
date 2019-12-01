@@ -1,0 +1,228 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Log",
+				"LogoutView"
+			],
+			[
+				"lO",
+				"LoginView"
+			],
+			[
+				"User",
+				"UserCreationForm"
+			],
+			[
+				"f",
+				"forms"
+			],
+			[
+				"user",
+				"users_view"
+			],
+			[
+				"cl",
+				"class"
+			],
+			[
+				"pu",
+				"public"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"brack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/User/Projects/Dev/blog_app/users/views.py",
+		"/C/Users/User/Projects/Dev/blog_app/users/templates/users/login.html",
+		"/C/Users/User/Projects/Dev/blog_app/users/urls.py",
+		"/C/Users/User/Projects/Dev/blog_app/users/templates/users/profile.html",
+		"/C/Users/User/Projects/Dev/blog_app/users/templates/users/register.html",
+		"/C/Users/User/Projects/Dev/blog_app/users/templates/users/logout.html",
+		"/C/Users/User/Projects/Dev/blog_app/blog/templates/blog/base.html",
+		"/C/Users/User/Projects/Dev/blog_app/blog/models.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog/urls.py",
+		"/C/Users/User/Projects/Dev/blog_app/users/forms.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog_app/urls.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog/forms.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog_app/settings.py",
+		"/C/Users/User/Projects/Dev/blog_app/users/templates/users/urls.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog/templates/blog/post_details.html",
+		"/C/Users/User/Desktop/main.java",
+		"/C/Users/User/Desktop/Michael Collections/My Library/Library Kits/Programming_Kits/Portfolio Samples/The Profitable Programmer Portofolio/index.html",
+		"/C/Users/User/Desktop/Learning/main.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog/apps.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog/views.py",
+		"/C/Users/User/Projects/Dev/blog_app/blog/admin.py",
+		"/C/Users/User/Desktop/Michael Collections/My Library/Library Kits/Programming_Kits/Github_Clones/try-django-19/src/templates/base.html",
+		"/C/Users/User/Desktop/Learning/Bootstrap4 Tutorial/index.html",
+		"/C/Users/User/Desktop/Michael Collections/My Library/Library Kits/Programming_Kits/Github_Clones/Django-blog_app-master/Django-blog_app-master/blog_app/blog/models.py"
+	],
+	"find":
+	{
+		"height": 29.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 68.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "wsgi.sublime-project",
+	"replace":
+	{
+		"height": 54.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 212.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

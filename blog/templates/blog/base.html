@@ -34,16 +34,44 @@
               <input class="form-control mr-sm-2" type="text" placeholder="Search....">
               <button type="submit" class=" text-white my-color btn-primary"><i class="fa fa-search"></i></button>
             </form>
-            
-            <a href="#" class="btn text-white m-2"><i class="fas fa-user-tie"></i> Sign In</a>
-            <a href="#" class="btn text-white"> <i class="fas fa-sign-in-alt"></i> Get Started</a>
+              {% if user.is_authenciated %} 
+                  <a href="{% url 'logout' %}" class="btn text-white m-2"><i class="fas fa-user-tie">logout</i> 
+              {% else %}
+                  <a href="{% url 'login' %}" class="btn text-white m-2"><i class="fas fa-user-tie"></i> Sign In</a>
+                  <a href="{% url 'register' %}" class="btn text-white"> <i class="fas fa-sign-in-alt"></i> Get Started</a>
+              {% endif %}           
+
           </div>
         </div>
       </div>
     </nav>
-  <div class="container">
-    {% block content %} {% endblock content %}
-  </div>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+          {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+            {% endif %}
+          {% block content %} {% endblock %}          
+        </div>
+        <div class="col-md-4">
+          <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>You can put any information here you'd like.
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
 
   
   

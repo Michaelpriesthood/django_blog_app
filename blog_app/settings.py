@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'crispy_forms',
+    'users.apps.UsersConfig',
+    'crispy_forms',    
     # 'social_django',
     
 ]
@@ -129,6 +130,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
 
 # AUTHENTICATION_BACKENDS = (
 #     'social_core.backends.github.GithubOAuth2',
