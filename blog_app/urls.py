@@ -19,12 +19,12 @@ from django.conf import settings
 
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     path('users/', include('users.urls')),
-    path('admin/', admin.site.urls),
-      
-
+    path('social-auth/', include('social_django.urls', namespace="social")), 
 ]
+
 
 if settings.DEBUG:
     # test mode

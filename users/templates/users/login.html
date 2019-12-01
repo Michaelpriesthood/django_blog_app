@@ -6,13 +6,19 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Login</legend>
+                <legend class="border-bottom mb-4">Login to your Account!</legend>
                 {{ form|crispy }}
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-primary btn-sm" type="submit">Login</button>
+            <div class="text-center ">
+                <button class="btn btn-outline-primary btn-block mb-2 " type="submit">Login</button>
             </div>
         </form>
+            <p class="text-center text-muted"><strong>-- OR --</strong></p> 
+            <hr>           
+        <div class="form-group text-center">
+            <a class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-facebook"></i> Login with Facebook</a>            
+            <a class="btn btn-danger" href="#" ><i class="fab fa-google"></i> Login with Google</a>
+        </div>
         <div class="border-top pt-3">
             <small class="text-muted">
                 Don't Have an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>

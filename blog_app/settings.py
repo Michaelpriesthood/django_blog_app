@@ -37,12 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig',
-    'users.apps.UsersConfig',
-    'crispy_forms',    
-    # 'social_django',
+    'blog.apps.BlogConfig',          # Added this
+    'users.apps.UsersConfig',        # Added this
+    'crispy_forms',                  # Added this 
+    'social_django',                 # Added this 
     
 ]
+
+
+# Added this
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,7 +62,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'blog_app.urls'
@@ -69,9 +77,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                # 'social_django.context_processors.backends',  
-                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -134,20 +139,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'blog-home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
 
+# SOCIAL_AUTH_FACEBOOK_KEY =    xxxxxxxxxxxxxxxxxxxxxxxxx  # App ID
+# SOCIAL_AUTH_FACEBOOK_SECRET = xxxxxxxxxxxxxxxxxxxxxxxxx  # App Secret
 
-
-# AUTHENTICATION_BACKENDS = (
-#     'social_core.backends.github.GithubOAuth2',
-#     'social_core.backends.twitter.TwitterOAuth',
-#     'social_core.backends.facebook.FacebookOAuth2',
-
-#     'django.contrib.auth.backends.ModelBackend',
-# )
-
-
-
-# LOGIN_REDIRECT_URL = 'home'
-
-# SOCIAL_AUTH_GITHUB_KEY = '554db35c60b2d79bd8a9'
-# SOCIAL_AUTH_GITHUB_SECRET = 'a95da7f9d2c150eb19ccddf19c9b5b85647647e9'
