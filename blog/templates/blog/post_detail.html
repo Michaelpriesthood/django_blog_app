@@ -1,0 +1,40 @@
+<title>Post Details</title>
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ posts.author.profile.image.url }}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="{% url 'user-post' posts.author.username %}">{{ posts.author }}</a>
+                <small class="text-muted"> on: {{ posts.publish|date:"M d, Y" }}</small>
+                {% if posts.author == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' posts.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' posts.id %}">Delete</a>
+                </div>               
+                {% endif %}
+            </div>
+            <h2 class="article-title">{{ posts.title }}</h2>
+            <p class="article-content">{{ posts.content }}
+        </div>
+    </article>
+
+        <!-- comments Form-->
+        <div class="card-body"> 
+            <h4>Leave your comment</h4>
+            <form action="{% url 'post-detail' posts.id %}" method="POST" >
+                {% csrf_token %}
+                {{ comment_form | crispy }}             
+                <button type="submit" class="btn btn-outline-primary btn-sm">Post Comment</button> 
+            </form>
+        </div>
+        <!-- comments Section-->
+    <h4>{{ comments.count }} comments </h4>
+        {% for comment in comments %}                   
+            <h6 style="color: green;"><cite title="Source Title">{{ comment.name|capfirst }}</cite></h6>
+            <small class="text-muted">{{ comment.created_on | timesince }} ago</small>
+            <p>{{ comment.body }}</p>     
+        {% endfor %}
+  
+{% endblock content %}

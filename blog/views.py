@@ -1,50 +1,38 @@
 from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponseRedirect
-from .models import Post, Files_Upload
+from .models import Post
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+		ListView,
+		CreateView,
+		UpdateView,
+		DeleteView
+)
 from . forms import CommentForm
 
 # Create your views here.
-def home(request):
-	post = Post.objects.all().order_by('-publish')
-	paginator = Paginator(post, 5) # Show 5 post for each page.
-	page = request.GET.get('page')
-	try:
-		posts = paginator.page(page)
-	except PageNotAnInteger:
-		posts = paginator.page(1)
-	except EmptyPage:
-		posts = paginator.page(paginator.num_pages)
-
-	if page is None:
-		start_index = 0
-		end_index = 7
-	else:
-		(start_index, end_index) = proper_pagination(posts, index=4)
-
-	page_range = list(paginator.page_range)[start_index:end_index]
-	context = {
-		'posts': posts,
-		'page_range': page_range,
-	}
-	return render(request, 'blog/home.html', context)
+class PostListView(ListView):
+	model = Post
+	template_name = 'blog/home.html'
+	context_object_name = 'posts'
+	ordering = ['-publish']
+	paginate_by = 5
 
 
-def proper_pagination(posts, index):
-    start_index = 0
-    end_index = 7
-    if posts.number > index:
-        start_index = posts.number - index
-        end_index = start_index + end_index
-    return (start_index, end_index)
+class UserPostListView(ListView):
+	model = Post
+	template_name = 'blog/user_posts.html'
+	context_object_name = 'posts'	
+	paginate_by = 5
+
+	def get_queryset(self):
+		user = get_object_or_404(User, username=self.kwargs.get('username'))
+		return Post.objects.filter(author=user).order_by('-publish')
 
 
-
-
-def post_details(request, post_id):
+def post_detail(request, post_id):
 	posts = get_object_or_404(Post, id=post_id)
 	comments = posts.comments.filter()
-	files_upload = Files_Upload.objects.filter()
     # Comment posted
 	if request.method == 'POST':
 		comment_form = CommentForm(request.POST)
@@ -58,10 +46,44 @@ def post_details(request, post_id):
 		'posts': posts,
 		'comments' :comments,
 		'comment_form': comment_form,
-		'files_upload': files_upload,
 	}
 
-	return render(request, 'blog/post_details.html', context)
+	return render(request, 'blog/post_detail.html', context)
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+	model = Post
+	fields = ['title', 'content']
+
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
+
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+	model = Post
+	fields = ['title', 'content']
+	
+
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)
+
+
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.author:
+			return True
+		return False
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = Post
+	success_url = '/' # Redirect back to the the homepage after deleting the post.
+
+	def test_func(self):
+		post = self.get_object()
+		if self.request.user == post.author:
+			return True
+		return False
 
 
 

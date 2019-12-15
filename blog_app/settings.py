@@ -47,7 +47,6 @@ INSTALLED_APPS = [
 
 # Added this
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
@@ -139,11 +138,17 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = 'login'
+
 LOGIN_REDIRECT_URL = 'blog-home'
-LOGOUT_URL = 'logout'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login' 
+
+
+
+# Login in with Social Accounts
 
 # SOCIAL_AUTH_FACEBOOK_KEY =    xxxxxxxxxxxxxxxxxxxxxxxxx  # App ID
 # SOCIAL_AUTH_FACEBOOK_SECRET = xxxxxxxxxxxxxxxxxxxxxxxxx  # App Secret
+
+ 
 

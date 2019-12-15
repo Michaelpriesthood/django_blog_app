@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Post, Comment, Files_Upload
+from . models import Post, Comment
 
 # Register your models here.
 @admin.register(Post)
@@ -10,7 +10,6 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ['title']
 
 admin.site.register(Comment)
-admin.site.register(Files_Upload)
 
 
 
